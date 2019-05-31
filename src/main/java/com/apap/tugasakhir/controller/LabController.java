@@ -31,28 +31,5 @@ public class LabController {
 	private String addPermintaanSubmit (@ModelAttribute PemeriksaanModel permintaan) {
 		labService.addPermintaan(permintaan);
 		return "permintaanPemeriksaanLab";
-	}
-	
-//	@RequestMapping (value = "/pilot/view", method = RequestMethod.GET)
-//	private String viewPilot (Model model , @RequestParam (value = "licenseNumber") String licenseNumber) {
-//		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-//		List <FlightModel> listFlight = flightService.getFlightListByPilot(pilot);
-//		model.addAttribute("pilot", pilot);
-//		model.addAttribute("flightlist", listFlight);
-//		return "view-pilot";
-//	}
-//	
-//	@RequestMapping (value="/pilot/update/{id}", method = RequestMethod.POST)
-//	private String updatePilot (@PathVariable (value = "id") Long pilotid, Model model) {
-//		 PilotModel pilot = pilotService.getPilotById(pilotid).get();
-//		 model.addAttribute("pilot", pilot);
-//		 return "update-pilot";
-//	}
-//	
-//	@RequestMapping (value = "/pilot/update" , method = RequestMethod.POST)
-//	private String updatePilotSubmit (@ModelAttribute PilotModel pilot) {
-//		pilotService.addPilot(pilot);
-//		return "update";
-//	}	
-
+	}	
 }
