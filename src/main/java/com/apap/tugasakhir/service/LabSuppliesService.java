@@ -1,9 +1,11 @@
 package com.apap.tugasakhir.service;
 
+import java.util.Optional;
+
 import com.apap.tugasakhir.model.LabSuppliesModel;
 
 public interface LabSuppliesService {
-	LabSuppliesModel getLabSuppliesById(int id);
+	Optional<LabSuppliesModel> getLabSuppliesById(Integer id);
 	void addLabSupplies(LabSuppliesModel labSupplies);
 
 }

@@ -3,6 +3,7 @@ package com.apap.tugasakhir.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.Optional;
 
 import com.apap.tugasakhir.model.LabSuppliesModel;
 import com.apap.tugasakhir.repository.LabSuppliesDb;
@@ -14,7 +15,7 @@ public class LabSuppliesServiceImpl implements LabSuppliesService {
 	private LabSuppliesDb labSuppliesDb;
 	
 	@Override
-	public LabSuppliesModel getLabSuppliesById(int id) {
+	public Optional<LabSuppliesModel> getLabSuppliesById(Integer id) {
 		return labSuppliesDb.findById(id);
 	}
 	

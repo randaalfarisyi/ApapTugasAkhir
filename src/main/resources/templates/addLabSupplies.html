@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Tambah Reagen</title>
+		<title>Tambah Lab Supplies</title>
 		
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
@@ -17,28 +17,21 @@
 	            <div class="col-md-6">
 	                <div class="card">
 	                    <div class="card-header">
-	                        Tambah Kebutuhan Reagen
+	                        Tambah Lab Supplies
 	                    </div>
 	                    <div class="card-body">
-	                        <form th:action="@{/lab/kebutuhan/tambah}"  th:object="${kebutuhan_reagen}" method="POST">
-	                            <!--  <form> 
-	                            	<div class="form-group"> 
-	                            		<label for="sel1">Nama Reagen:</label> 
-	                            		<select class="form-control" name="nama"> 
-	                            			<option>-</option> 
-	                            			<option>Reagen 1</option> 
-	                            			<option>Reagen 2</option> 
-	                            			<option>Reagen 3</option>
-	                            			<option>Reagen 4</option>
-	                            			<option>Reagen 5</option> 
-	                            		</select> 
-	                            	</div> 
-	                            </form>-->
-	                            Nama Reagen: <br>
+	                        <form th:action="@{/lab/stok/tambah}"  th:object="${lab_supplies}" method="POST">
+	                            Jenis Barang: <br>
+	                            <input type="text" name="jenis" class="form-control"/>
+	                            <br>
+	                            Nama Barang: <br>
 	                            <input type="text" name="nama" class="form-control"/>
 	                            <br>
-	                            Jumlah: <br>
+	                            Jumlah Barang: <br>
 	                            <input type="number" name="jumlah" class="form-control"/>
+	                            <br>
+	                            Deskripsi Barang: <br>
+	                            <input type="text" name="deskripsi" class="form-control"/>
 	                            <br><br>
 	                            <button type="submit" class="btn btn-primary">Submit</button>
 	                        </form>
