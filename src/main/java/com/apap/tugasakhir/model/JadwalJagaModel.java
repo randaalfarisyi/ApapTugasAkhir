@@ -10,17 +10,24 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import com.apap.tugasakhir.rest.Staf;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "jadwal_jaga")
 public class JadwalJagaModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 	
 	@NotNull
 	@Column(name = "tanggal", nullable = false)
@@ -34,17 +41,19 @@ public class JadwalJagaModel implements Serializable {
 	@Column(name = "waktu_selesai", nullable = false)
 	private String waktuSelesai;
 	
-	@NotNull
-	@Column(name = "id_staff", nullable = false)
-	private int idStaff;
-		
-	@Column(name = "staf_lab")
-	private Staf stafLab;
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_staff", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private StaffModel staff;
+	
+	//@Column(name = "staf_lab")
+	//private Staf stafLab;
 	
 	@OneToMany(mappedBy="idJadwal", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<PemeriksaanModel> jadwalJagaPemeriksaan;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
@@ -75,30 +84,30 @@ public class JadwalJagaModel implements Serializable {
 	public void setWaktuSelesai(String waktuSelesai) {
 		this.waktuSelesai = waktuSelesai;
 	}
+
+	public StaffModel getStaffModel() {
+		return staff;
+	}
+
+	public void setStaffModel(StaffModel staffModel) {
+		this.staff = staffModel;
+	}
+
+	//public List<PemeriksaanModel> getJadwalJagaPemeriksaan() {
+	//	return jadwalJagaPemeriksaan;
+	//}
+
+	//public void setJadwalJagaPemeriksaan(List<PemeriksaanModel> jadwalJagaPemeriksaan) {
+		//this.jadwalJagaPemeriksaan = jadwalJagaPemeriksaan;
+	//}
 	
-	public int getIdStaff() {
-		return idStaff;
-	}
+	//public Staf getStafLab() {
+		//return stafLab;
+	//}
 
-	public void setIdStaff(int idStaff) {
-		this.idStaff = idStaff;
-	}
-
-	public List<PemeriksaanModel> getJadwalJagaPemeriksaan() {
-		return jadwalJagaPemeriksaan;
-	}
-
-	public void setJadwalJagaPemeriksaan(List<PemeriksaanModel> jadwalJagaPemeriksaan) {
-		this.jadwalJagaPemeriksaan = jadwalJagaPemeriksaan;
-	}
-	
-	public Staf getStafLab() {
-		return stafLab;
-	}
-
-	public void setStafLab(Staf staf) {
-		this.stafLab = staf;
-	}
+	//public void setStafLab(Staf staf) {
+		//this.stafLab = staf;
+	//}
 
 	
 }
