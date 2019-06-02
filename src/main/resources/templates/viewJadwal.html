@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Jadwal</title>
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	<body>
+			<div th:replace="fragments/fragment :: navbar" ></div>
+		
+			<div class="card" align="center">
+			<center class="col-md-5">
+				<h2 class="card-header">Jadwal Jaga Lab</h2>
+		
+				<div class = "card">
+					<div class = "card-body">
+					<h4>Staff <th th:text="${staff.name}"></th></h4>
+						<table border="I">
+							<thead>
+								<tr style="text-align: center">
+									
+									<th style="text-align: center">Tanggal </th>
+									<th style="text-align: center">Jam mulai  </th>
+									<th style="text-align: center">Jam selesai  </th>
+								</tr>
+							</thead>
+							<tbody>	
+								<tr style="text-align: center">
+									<td style="text-align: center" th:text="${jadwal.tanggal}"></td>
+									<td style="text-align: center" th:text="${jadwal.waktuMulai}"></td>
+									<td style="text-align: center" th:text="${jadwal.waktuSelesai}"></td>
+								</tr>
+							</tbody>
+					</table>
+					</div>
+				</div>
+			</center>
+		</div>
+		
+	</body>
+</html>
