@@ -27,14 +27,11 @@ public class KebutuhanReagenModel implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "nama", nullable = false)
-	private String nama;
-	
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="id_reagen",referencedColumnName="id", nullable = false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Optional<LabSuppliesModel> idReagen;
+	private LabSuppliesModel idReagen;
 	
 	@Column(name = "jumlah", nullable = false)
 	private int jumlah;
@@ -62,12 +59,12 @@ public class KebutuhanReagenModel implements Serializable {
 		this.id = id;
 	}
 
-	public Optional<LabSuppliesModel> getIdReagen() {
+	public LabSuppliesModel getIdReagen() {
 		return idReagen;
 	}
 
-	public void setIdReagen(Optional<LabSuppliesModel> archive) {
-		this.idReagen = archive;
+	public void setIdReagen(LabSuppliesModel idReagen) {
+		this.idReagen = idReagen;
 	}
 
 	public int getJumlah() {

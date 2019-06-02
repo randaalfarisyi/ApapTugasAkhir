@@ -1,9 +1,6 @@
 package com.apap.tugasakhir.controller;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,61 +24,25 @@ public class KebutuhanReagenController {
 	@Autowired
 	private LabSuppliesService labSuppliesService;
 	
-	/**@RequestMapping(value = "/lab/kebutuhan/{id_reagen}", method = RequestMethod.GET)
-	private String addKebutuhanReagen(@PathVariable(value="id_reagen") int id_reagen, Model model) {
-		KebutuhanReagenModel kebutuhanReagen = new KebutuhanReagenModel();
-		LabSuppliesModel labSupplies = labSuppliesService.getLabSuppliesById(id_reagen);
-		kebutuhanReagen.setIdReagen(labSupplies);
-		model.addAttribute("kebutuhan_reagen", kebutuhanReagen);
+	@RequestMapping(value = "/lab/kebutuhan/tambah", method = RequestMethod.GET)
+	private String addKebutuhanReagen(Model model) {
+		List<LabSuppliesModel> listReagen = labSuppliesService.getListLabSupplies();
+		model.addAttribute("kebutuhanReagen", new KebutuhanReagenModel());
+		model.addAttribute("listReagen", listReagen);
 		return "addKebutuhanReagen";
-	}*/
-	
-	@RequestMapping(value = "/lab/kebutuhan/tambah", method = RequestMethod.POST)
-	private String addKebutuhanReagenSubmit(@ModelAttribute KebutuhanReagenModel kebutuhanReagen) {
-		kebutuhanReagenService.addReagen(kebutuhanReagen);
-		return "addReagenSuccess";
 	}
 	
-	@RequestMapping(value = "/lab/kebutuhan/{id_reagen}", method = RequestMethod.GET)
-    private String addKebutuhanReagen(@PathVariable(value = "id") Integer id, Model model) {
-        LabSuppliesModel labSupplies= labSuppliesService.getLabSuppliesById(id).get();
-        labSupplies.setSuppliesReagen(new ArrayList<KebutuhanReagenModel>() {
-            private ArrayList<KebutuhanReagenModel> init(){
-                this.add(new KebutuhanReagenModel());
-                return this;
-            }
-        }.init());
-
-        model.addAttribute("lab_supplies", labSupplies);
-        return "addKebutuhanReagen";
-    }
-
-    @RequestMapping(value = "/lab/kebutuhan/{id_reagen}", method = RequestMethod.POST, params={"addRow"})
-    private String addRow(@ModelAttribute LabSuppliesModel labSupplies, Model model) {
-        labSupplies.getSuppliesReagen().add(new KebutuhanReagenModel());
-        model.addAttribute("lab_supplies", labSupplies);
-        return "addKebutuhanReagen";
-    }
-
-    @RequestMapping(value="/lab/kebutuhan/{id_reagen}", method = RequestMethod.POST, params={"removeRow"})
-    public String removeRow(@ModelAttribute LabSuppliesModel labSupplies, Model model, HttpServletRequest req) {
-        Integer rowId = Integer.valueOf(req.getParameter("removeRow"));
-        labSupplies.getSuppliesReagen().remove(rowId.intValue());
-        
-        model.addAttribute("lab_supplies", labSupplies);
-        return "addKebutuhanReagen";
-    }
-
-    @RequestMapping(value = "/lab/kebutuhan/{id_reagen}", method = RequestMethod.POST, params={"save"})
-    private String addKebutuhanReagenSubmit(@ModelAttribute LabSuppliesModel labSupplies) {
-        Optional<LabSuppliesModel> archive = labSuppliesService.getLabSuppliesById(labSupplies.getId());
-        for (KebutuhanReagenModel kebutuhanReagen : labSupplies.getSuppliesReagen()) {
-            if (kebutuhanReagen != null) {
-                kebutuhanReagen.setIdReagen(archive);
-                kebutuhanReagenService.addReagen(kebutuhanReagen);
-            }
-        }
-        return "add";
-    }
-
+	@RequestMapping(value = "/lab/kebutuhan/tambah", method = RequestMethod.POST)
+	private String addKebutuhanReagenSubmit(@ModelAttribute KebutuhanReagenModel kebutuhanReagen, Model model) {
+		kebutuhanReagenService.addKebutuhanReagen(kebutuhanReagen);
+		model.addAttribute("success", "Berhasil!");
+		return "addKebutuhanReagen";
+	}
+	
+	@RequestMapping(value = "/lab/kebutuhan")
+	private String viewAllKebutuhanReagen(Model model) {
+		List<KebutuhanReagenModel> listKebutuhanReagen = kebutuhanReagenService.getListKebutuhanReagen();
+		model.addAttribute("listKebutuhanReagen", listKebutuhanReagen);
+		return "viewKebutuhanReagen";
+	}
 }

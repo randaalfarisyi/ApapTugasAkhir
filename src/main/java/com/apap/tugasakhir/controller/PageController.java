@@ -20,10 +20,10 @@ public class PageController {
         return "account";
     }
     
-    @RequestMapping("/lab/kebutuhan")
+    /**@RequestMapping("/lab/kebutuhan")
     public String kebutuhanReagen(){
         return "kebutuhanReagen";
-    }
+    }*/
     
 //    @RequestMapping()
 }

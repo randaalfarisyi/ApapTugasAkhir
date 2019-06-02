@@ -10,7 +10,8 @@
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
 	
-		<h2>Data Berhasil Ditambahkan</h2>
+		<h2>Data Berhasil Diubah</h2>
+		<a th:href="@{'/lab/stok/view?id=' + ${id}}">Klik untuk Melihat</a>
 	</body>
 
 </html>

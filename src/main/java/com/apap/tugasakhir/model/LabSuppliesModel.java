@@ -20,7 +20,7 @@ import javax.validation.constraints.Size;
 public class LabSuppliesModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private int id;
 	
 	@NotNull
 	@Size(max = 255)

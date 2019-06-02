@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<title>Tambah Reagen</title>
+		<title>Add Kebutuhan Reagen</title>
 		
 		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
 		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
@@ -11,8 +11,10 @@
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
 	
+		<div th:if="${success}=='true'">
+    			<p>Data kebutuhan reagen berhasil ditambah!</p>
+		</div>
 		<div class="container-fluid">
-	        <h2>Hello!</h2>
 	        <div class="row">
 	            <div class="col-md-6">
 	                <div class="card">
@@ -20,33 +22,21 @@
 	                        Tambah Kebutuhan Reagen
 	                    </div>
 	                    <div class="card-body">
-	                        <form th:action="@{/lab/kebutuhan/tambah}"  th:object="${kebutuhan_reagen}" method="POST">
-	                            <!--  <form> 
-	                            	<div class="form-group"> 
-	                            		<label for="sel1">Nama Reagen:</label> 
-	                            		<select class="form-control" name="nama"> 
-	                            			<option>-</option> 
-	                            			<option>Reagen 1</option> 
-	                            			<option>Reagen 2</option> 
-	                            			<option>Reagen 3</option>
-	                            			<option>Reagen 4</option>
-	                            			<option>Reagen 5</option> 
-	                            		</select> 
-	                            	</div> 
-	                            </form>-->
-	                            Nama Reagen: <br>
-	                            <input type="text" name="nama" class="form-control"/>
-	                            <br>
-	                            Jumlah: <br>
-	                            <input type="number" name="jumlah" class="form-control"/>
-	                            <br><br>
-	                            <button type="submit" class="btn btn-primary">Submit</button>
+	                        <form th:action="@{/lab/kebutuhan/tambah}"  th:object="${kebutuhanReagen}" method="POST">
+		                        Nama Reagen <br>
+		                        <select name="idReagen" class="form-control" id="exampleFormControlSelect1">
+		                        	<option th:value="0" disabled th:text="'Pilih Nama Reagen'"></option>
+		                        	<option th:each="itemReagen : ${listReagen}" th:value="${itemReagen.id}" th:text="${itemReagen.nama}"></option>
+		                        </select>
+		                        Jumlah <br>
+		                        <input type="number" name="jumlah" class="form-control"/>
+		                        <br><br>
+		                        <button type="submit" class="btn btn-primary">Submit</button>
 	                        </form>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
-
-</html>
+</html>   

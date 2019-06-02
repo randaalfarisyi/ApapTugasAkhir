@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface LabSuppliesDb extends JpaRepository<LabSuppliesModel, Long> {
-	Optional<LabSuppliesModel> findById (Integer id);
+public interface LabSuppliesDb extends JpaRepository<LabSuppliesModel, Integer> {
+	Optional<LabSuppliesModel> findById (int id);
 
 }

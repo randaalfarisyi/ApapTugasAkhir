@@ -1,69 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <title>View Lab Supplies</title>
-
-    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
-    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
-</head>
-
-<body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
-
-    <div class="container-fluid">
-        <br>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header" th:text="'Lab Supplies ' + ${lab_supplies.id}">
-                    </div>
-                    <div class="card-body">
-                    	<p th:text="'Nama: ' + ${lab_supplies.nama}"></p>
-                        <p th:text="'Jenis: ' + ${lab_supplies.jenis}"></p>
-                        <p th:text="'Jumlah: ' + ${lab_supplies.jumlah}"></p>
-                        <p th:text="'Deskripsi: ' + ${lab_supplies.deskripsi}"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <!--  <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        Kebutuhan Reagen
-                    </div>
-                    <div class="card-body">
-                        <table border="I">
-                        	<thead>
-                            	<tr>
-                                	<th style="text-align: center">Id</th>
-                                	<th style="text-align: center">Nama</th>
-                                    <th style="text-align: center">Jumlah</th>
-                                    <th style="text-align: center">Status</th>
-                                    <th style="text-align: center">Tanggal Perubahan Status</th>
-                                </tr>
-							</thead>
-                            <tbody>
-                            	<tr th:each="kebutuhan_reagen,iterationStatus : *{listKebutuhanReagen}">
-                                	<td th:text="${iterationStatus.count}"></td>
-                                    <td th:text="${kebutuhan_reagen.nama}"></td>
-                                    <td th:text="${kebutuhan_reagen.jumlah}"></td>
-                                    <td th:text="${kebutuhan_reagen.status}"></td>
-                                    <td th:text="${kebutuhan_reagen.tanggal_update}"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <br>
-                        <form th:action="@{/lab/kebutuhan/tambah/} + ${lab_supplies.id}">
-                            <button value="submit" class="btn btn-primary">Tambah Kebutuhan Reagen</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-    </div>
-</body>
-
+	<head>
+		<title>View Lab Supplies</title>
+		
+		<object th:include="fragments/fragment :: css" th:remove="tag"></object>
+		<object th:include="fragments/fragment :: js" th:remove="tag"></object>
+	</head>
+	
+	<body>
+		<nav th:replace="fragments/Fragment :: navbar"></nav>
+				
+		<div class="card">
+			<div class="card-header">
+				<h3 th:text="${supply.nama}"></h3>
+			</div>
+			<div class="card-body">
+				<div class="center" style="background-color:#FFFFFF" align="justify">
+					<h3 th:text="'Jenis : ' + ${supply.jenis}" ></h3>
+					<h3 th:text="'Deskripsi : ' + ${supply.deskripsi}" ></h3>
+					<h3 th:text="'Jumlah : ' + ${supply.jumlah}" ></h3>
+					<div>
+						<a th:href="@{'/lab/stok/ubah/' + ${supply.id}}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Update Lab Supplies</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
