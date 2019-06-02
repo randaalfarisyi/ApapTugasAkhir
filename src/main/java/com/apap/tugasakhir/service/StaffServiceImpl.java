@@ -23,10 +23,6 @@ public class StaffServiceImpl implements StaffService {
 	
 	@Override
 	public List<StaffModel> getAllStaff() {
-<<<<<<< HEAD
-=======
-		System.out.println("hahahahaha");
->>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
 		return staffDb.findAll();
 	}
 
