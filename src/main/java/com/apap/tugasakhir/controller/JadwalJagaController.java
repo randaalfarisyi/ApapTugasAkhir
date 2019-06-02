@@ -26,30 +26,19 @@ import com.apap.tugasakhir.service.StaffService;
 public class JadwalJagaController {
 	@Autowired
 	private JadwalJagaService jadwalJagaService;
-<<<<<<< HEAD
 	
 	@Autowired
 	public StaffService staffService;
-=======
-	private StaffService staffService;
->>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
 	
 	
 	@RequestMapping(value = "/tambah", method = RequestMethod.GET)
     private String add(Model model) {
 		
 		JadwalJagaModel jadwal = new JadwalJagaModel();
-<<<<<<< HEAD
 		List<StaffModel> staffList = staffService.getAllStaff();
 		model.addAttribute("jadwal_jaga", jadwal);
 		model.addAttribute("staffList", staffList);	
-		
-=======
-		System.out.println(jadwalJagaService.getJadwalAll().get(0).getTanggal());
-		//System.out.println(staffService.getAllStaff().get(0).getName());
-		model.addAttribute("jadwal_jaga", jadwal);
-		//model.addAttribute("staff", staffList);
->>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
+	
 		
         return "addJadwal";
     }
@@ -62,7 +51,7 @@ public class JadwalJagaController {
 	
 	@RequestMapping(value="/{tanggal}", method = RequestMethod.GET)
 	private String viewJadwal(@PathVariable(value = "tanggal") Date tanggal, Model model) {
-<<<<<<< HEAD
+
 		
 		List<StaffModel> staffList = staffService.getAllStaff();
 		List<JadwalJagaModel> jadwal = new ArrayList();
@@ -78,12 +67,7 @@ public class JadwalJagaController {
 		}
 		model.addAttribute("jadwal", jadwal);
 		model.addAttribute("jadwal1", jadwal.get(0));
-=======
-		Optional<JadwalJagaModel> jadwal = jadwalJagaService.getJadwalByTanggal(tanggal);
-		StaffModel staff = jadwal.get().getStaffModel();
-		model.addAttribute("jadwal", jadwal.get());
-		model.addAttribute("staff",staff);
->>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
+
 		return "viewJadwal";
 		
 	}
@@ -91,21 +75,18 @@ public class JadwalJagaController {
 	@RequestMapping(value="/ubah/{id}", method = RequestMethod.GET)
 	private String update(@PathVariable(value = "id") long id, Model model) {
 		Optional<JadwalJagaModel> jadwal = jadwalJagaService.getJadwalById(id);
-<<<<<<< HEAD
+
 		List<StaffModel> staffList = staffService.getAllStaff();
 		model.addAttribute("jadwal", jadwal.get());
 		model.addAttribute("staffList", staffList);
-=======
-		
-		model.addAttribute("jadwal", jadwal.get());
->>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
+
 		return "updateJadwal";
 		
 	}
 	@RequestMapping(value = "/ubah", method = RequestMethod.POST)
     private String updateSubmit(@ModelAttribute JadwalJagaModel jadwal, Model model) {
         jadwalJagaService.addJadwal(jadwal);
-<<<<<<< HEAD
+
         List<StaffModel> staffList = staffService.getAllStaff();
 		List<JadwalJagaModel> jadwal1 = new ArrayList();
 		for (int i = 0; i <= staffList.size()-1; i++) {
@@ -121,13 +102,7 @@ public class JadwalJagaController {
 		model.addAttribute("jadwal", jadwal1);
 		model.addAttribute("jadwal1", jadwal1.get(0));        
 		return "viewJadwal";
-=======
-        JadwalJagaModel jadwal1 = jadwalJagaService.getJadwalById(jadwal.getId()).get();
-        StaffModel staff = jadwal1.getStaffModel();
-        model.addAttribute("jadwal", jadwal);
-        model.addAttribute("staff", staff);
-        return "viewJadwal";
->>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
+
     }
 	
 	
