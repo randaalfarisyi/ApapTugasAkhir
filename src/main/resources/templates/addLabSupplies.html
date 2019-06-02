@@ -10,6 +10,10 @@
 	
 	<body>
 		<nav th:replace="fragments/fragment :: navbar"></nav>
+		
+		<div th:if="${success}=='true'">
+    			<h1>Data lab supplies berhasil ditambah!</h1>
+		</div>
 	
 		<div class="container-fluid">
 	        <h2>Hello!</h2>

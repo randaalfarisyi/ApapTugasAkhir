@@ -39,7 +39,8 @@ public class LabSuppliesController {
 	private String addLabSuppliesSubmit(@ModelAttribute LabSuppliesModel labSupplies, Model model) {
 		labSuppliesService.addSupplies(labSupplies);
 		model.addAttribute("id", labSupplies.getId());
-		return "addLabSuppliesSuccess";
+		model.addAttribute("success", "true");
+		return "addLabSupplies";
 	}
 	
 	@RequestMapping(value="/lab/stok/view", method=RequestMethod.GET)

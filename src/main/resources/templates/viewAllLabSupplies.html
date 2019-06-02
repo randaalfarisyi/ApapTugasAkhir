@@ -15,14 +15,14 @@
 			<h2>All Lab Supplies List</h2>
 			
 			<div class="container-fluid">
-				<table id="table_id" class="display" style="width:100%">
+				<table class="table table-striped">
 			        <thead>
 			            <tr>
-			                <th>Nama</th>
-			                <th>Jenis</th>
-			                <th>Deskripsi</th>
-			                <th>Jumlah</th>
-			                <th>Action</th>
+			                <th scope="col">Nama</th>
+			                <th scope="col">Jenis</th>
+			                <th scope="col">Deskripsi</th>
+			                <th scope="col">Jumlah</th>
+			                <th scope="col">Action</th>
 			            </tr>
 			        </thead>
 			        <tbody>
@@ -31,7 +31,11 @@
 			        		<td th:text="${supply.jenis}"></td>
 			        		<td th:text="${supply.deskripsi}"></td>
 			        		<td th:text="${supply.jumlah}"></td>
-			        		<td><a th:href="@{'/lab/stok/ubah/' + ${supply.id}}">Update</a></td>
+			        		<td>
+			        			<form th:action="@{'/lab/stok/ubah/' + ${supply.id}}">
+			        				<button type="submit">Update</button>
+			        			</form>
+			        		</td>
 			        	</tr>
 			        </tbody>
 		   		</table>

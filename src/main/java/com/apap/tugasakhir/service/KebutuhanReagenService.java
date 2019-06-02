@@ -9,4 +9,4 @@ public interface KebutuhanReagenService {
 	KebutuhanReagenModel addKebutuhanReagen (KebutuhanReagenModel kebutuhanReagen);
 	Optional<KebutuhanReagenModel> getKebutuhanReagenById(int id);
 	List<KebutuhanReagenModel> getListKebutuhanReagen();
-	}
+}

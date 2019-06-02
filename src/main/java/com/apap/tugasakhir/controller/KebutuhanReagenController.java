@@ -35,7 +35,7 @@ public class KebutuhanReagenController {
 	@RequestMapping(value = "/lab/kebutuhan/tambah", method = RequestMethod.POST)
 	private String addKebutuhanReagenSubmit(@ModelAttribute KebutuhanReagenModel kebutuhanReagen, Model model) {
 		kebutuhanReagenService.addKebutuhanReagen(kebutuhanReagen);
-		model.addAttribute("success", "Berhasil!");
+		model.addAttribute("success", "true");
 		return "addKebutuhanReagen";
 	}
 	
@@ -43,6 +43,25 @@ public class KebutuhanReagenController {
 	private String viewAllKebutuhanReagen(Model model) {
 		List<KebutuhanReagenModel> listKebutuhanReagen = kebutuhanReagenService.getListKebutuhanReagen();
 		model.addAttribute("listKebutuhanReagen", listKebutuhanReagen);
+		return "viewKebutuhanReagen";
+	}
+	
+	@RequestMapping(value = "/lab/kebutuhan/ubah/{id}", method = RequestMethod.GET)
+	private String updateKebutuhanReagen(@PathVariable(value="id") int id, Model model) {
+		KebutuhanReagenModel kebutuhanReagen = kebutuhanReagenService.getKebutuhanReagenById(id).get();
+		model.addAttribute("kebutuhanReagen", kebutuhanReagen);
+		return "updateKebutuhanReagen";
+	}
+	
+	@RequestMapping(value = "/lab/kebutuhan/ubah", method = RequestMethod.POST)
+	private String updateKebutuhanReagenSubmit(@ModelAttribute KebutuhanReagenModel kebutuhanReagen, Model model) {
+		java.sql.Date sqlDate = new java.sql.Date(new java.util.Date().getTime());
+		kebutuhanReagen.setTanggalUpdate(sqlDate);
+		kebutuhanReagenService.addKebutuhanReagen(kebutuhanReagen);
+		List<KebutuhanReagenModel> listKebutuhanReagen = kebutuhanReagenService.getListKebutuhanReagen();
+		model.addAttribute("listKebutuhanReagen", listKebutuhanReagen);
+		model.addAttribute("kebutuhanReagen", kebutuhanReagen);
+		model.addAttribute("success", "true");
 		return "viewKebutuhanReagen";
 	}
 }
