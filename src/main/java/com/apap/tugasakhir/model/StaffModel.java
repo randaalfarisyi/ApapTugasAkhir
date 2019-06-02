@@ -26,11 +26,9 @@ public class StaffModel implements Serializable {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-<<<<<<< HEAD
+
 	@OneToMany(mappedBy="staff", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-=======
-	@OneToMany(mappedBy="staffModel", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
->>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
+
 	private List<JadwalJagaModel> jadwalJagaModel;
 
 	public long getId() {
