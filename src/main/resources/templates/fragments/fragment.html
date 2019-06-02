@@ -17,9 +17,17 @@
 <nav th:fragment="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">APAP</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav pull=left">
             <li class="nav-item active">
                 <a class="nav-link" th:href="@{/}">Home</a>
+        </ul>
+        <ul class="navbar-nav pull-left">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/lab/user}">Account</a>
+        </ul>
+        <ul class="navbar-nav pull-left">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/lab/kebutuhan}">Kebutuhan Reagen</a>
         </ul>
         <ul class="navbar-nav pull-right">
             <li class="nav-item active">

@@ -2,6 +2,7 @@ package com.apap.tugasakhir.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,11 +27,14 @@ public class KebutuhanReagenModel implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(name = "nama", nullable = false)
+	private String nama;
+	
 	@JoinColumn(name="id_reagen",referencedColumnName="id", nullable = false)
 	@OnDelete(action = OnDeleteAction.NO_ACTION)
 	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
-	private LabSuppliesModel idReagen;
+	private Optional<LabSuppliesModel> idReagen;
 	
 	@Column(name = "jumlah", nullable = false)
 	private int jumlah;
@@ -58,12 +62,12 @@ public class KebutuhanReagenModel implements Serializable {
 		this.id = id;
 	}
 
-	public LabSuppliesModel getIdReagen() {
+	public Optional<LabSuppliesModel> getIdReagen() {
 		return idReagen;
 	}
 
-	public void setIdReagen(LabSuppliesModel idReagen) {
-		this.idReagen = idReagen;
+	public void setIdReagen(Optional<LabSuppliesModel> archive) {
+		this.idReagen = archive;
 	}
 
 	public int getJumlah() {

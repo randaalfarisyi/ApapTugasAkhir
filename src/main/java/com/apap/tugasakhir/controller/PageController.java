@@ -14,4 +14,16 @@ public class PageController {
     public String login(){
         return "login";
     }
+    
+    @RequestMapping("/lab/user")
+    public String account(){
+        return "account";
+    }
+    
+    @RequestMapping("/lab/kebutuhan")
+    public String kebutuhanReagen(){
+        return "kebutuhanReagen";
+    }
+    
+//    @RequestMapping()
 }
