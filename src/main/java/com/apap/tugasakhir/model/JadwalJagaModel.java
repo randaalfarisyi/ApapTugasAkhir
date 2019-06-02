@@ -45,11 +45,9 @@ public class JadwalJagaModel implements Serializable {
     @JoinColumn(name = "id_staff", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
-<<<<<<< HEAD
+
     private StaffModel staff;
-=======
-    private StaffModel staffModel;
->>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
+
 	
 	//@Column(name = "staf_lab")
 	//private Staf stafLab;
@@ -90,28 +88,21 @@ public class JadwalJagaModel implements Serializable {
 	}
 
 	public StaffModel getStaffModel() {
-<<<<<<< HEAD
 		return staff;
 	}
 
 	public void setStaffModel(StaffModel staffModel) {
 		this.staff = staffModel;
-=======
-		return staffModel;
+
 	}
 
-	public void setStaffModel(StaffModel staffModel) {
-		this.staffModel = staffModel;
->>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
+	public List<PemeriksaanModel> getJadwalJagaPemeriksaan() {
+		return jadwalJagaPemeriksaan;
 	}
 
-	//public List<PemeriksaanModel> getJadwalJagaPemeriksaan() {
-	//	return jadwalJagaPemeriksaan;
-	//}
-
-	//public void setJadwalJagaPemeriksaan(List<PemeriksaanModel> jadwalJagaPemeriksaan) {
-		//this.jadwalJagaPemeriksaan = jadwalJagaPemeriksaan;
-	//}
+	public void setJadwalJagaPemeriksaan(List<PemeriksaanModel> jadwalJagaPemeriksaan) {
+		this.jadwalJagaPemeriksaan = jadwalJagaPemeriksaan;
+	}
 	
 	//public Staf getStafLab() {
 		//return stafLab;
