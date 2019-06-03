@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class JenisModel implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@NotNull
 	@Size(max = 255)
@@ -33,18 +33,15 @@ public class JenisModel implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_supplies", referencedColumnName = "id", nullable = false)
-	@OnDelete(action = OnDeleteAction.NO_ACTION)
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	@JsonIgnore
 	private LabSuppliesModel idSupplies;
-	
-	@OneToMany(mappedBy="jenis", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<PemeriksaanModel> pemeriksaan;
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -63,14 +60,5 @@ public class JenisModel implements Serializable {
 	public void setIdSupplies(LabSuppliesModel idSupplies) {
 		this.idSupplies = idSupplies;
 	}
-
-	public List<PemeriksaanModel> getPemeriksaan() {
-		return pemeriksaan;
-	}
-
-	public void setPemeriksaan(List<PemeriksaanModel> pemeriksaan) {
-		this.pemeriksaan = pemeriksaan;
-	}
-
 	
 }

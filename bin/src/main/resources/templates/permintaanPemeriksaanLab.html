@@ -26,8 +26,6 @@
 									<th style="text-align: center">Nama Pasien</th>
 									<th style="text-align: center">Tanggal Permintaan</th>
 									<th style="text-align: center">Status</th>
-									<th style="text-align: center">Ubah status</th>
-									<th style="text-align: center">Tambah Hasil</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -35,14 +33,7 @@
 									<td th:text="${iterationStatus.count}"></td>
 									<td th:text="${permintaan.pasien.nama}" />
 									<td th:text="${permintaan.tanggalPengajuan}" />
-									<div th:switch="${permintaan.status}">
-										<td th:case=0 style="background-color: red">Menunggu Persetujuan</td>
-										<td th:case=1 style="background-color: yellow">Diproses</td>
-										<td th:case=2 style="background-color: lime">Selesai</td>
-									</div>
-									<td><a th:href="@{lab/pemeriksaan/permintaan?id=} + ${permintaan.id}">Ubah Status</a></td>
-									<td><input th:if="${permintaan.status} == 2" type="text" name="hasil" class="form-control"/>
-									<td><button th:if="${permintaan.status} == 2" type = "submit" name="hasil">Simpan</button></td>
+									<td th:text="${permintaan.status}" />
 								</tr>
 							</tbody>
 						</table>
@@ -50,7 +41,5 @@
 				</div>
 			</div>
 		</div>
-		<br>
-    </div>
 </body>
 </html>

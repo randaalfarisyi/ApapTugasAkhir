@@ -12,5 +12,5 @@ import com.apap.tugasakhir.model.PemeriksaanModel;
 public interface LabService {
     void addPermintaan(PemeriksaanModel permintaan);
     List<PemeriksaanModel> findAll();
-    
+    Optional<PemeriksaanModel> getPemeriksaanById(int id);
 }

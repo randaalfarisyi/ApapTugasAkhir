@@ -9,5 +9,4 @@ import com.apap.tugasakhir.model.JadwalJagaModel;
 
 public interface JadwalJagaDb extends JpaRepository<JadwalJagaModel, Long>{
 	Optional<JadwalJagaModel> findByTanggal(Date date);
-
 }

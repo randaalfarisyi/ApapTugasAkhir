@@ -1,8 +1,10 @@
 package com.apap.tugasakhir.model;
 
 import java.io.Serializable;
+
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,7 +21,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.apap.tugasakhir.rest.Pasien;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -32,8 +34,11 @@ public class PemeriksaanModel implements Serializable{
 	@Column(name = "tanggal_pengajuan", nullable = false)
 	private Date tanggalPengajuan;
 
-	@Column(name = "pasien")
-	private Pasien pasien;
+	@OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_pasien", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private PasienModel pasien;
 	
 	@Column(name = "tanggal_pemeriksaan")
 	private Date tanggalPemeriksaan;	
@@ -58,11 +63,11 @@ public class PemeriksaanModel implements Serializable{
 	@Column(name = "hasil")
 	private String hasil;
 
-	public Pasien getPasien() {
+	public PasienModel getPasien() {
 		return pasien;
 	}
 
-	public void setPasien(Pasien pasien) {
+	public void setPasien(PasienModel pasien) {
 		this.pasien = pasien;
 	}
 

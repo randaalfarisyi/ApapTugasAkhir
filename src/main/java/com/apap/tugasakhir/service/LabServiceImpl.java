@@ -28,4 +28,9 @@ public class LabServiceImpl implements LabService{
 	public List<PemeriksaanModel> findAll() {
 		return labDB.findAll();
 	}
+	
+	@Override
+	public Optional<PemeriksaanModel> getPemeriksaanById(int id) {
+		return labDB.findById(id);
+	}
 }
