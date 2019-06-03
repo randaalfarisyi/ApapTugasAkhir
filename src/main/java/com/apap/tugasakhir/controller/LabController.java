@@ -21,6 +21,7 @@ import com.apap.tugasakhir.model.PemeriksaanModel;
 import com.apap.tugasakhir.service.JadwalJagaService;
 import com.apap.tugasakhir.service.JenisPemeriksaanService;
 import com.apap.tugasakhir.service.LabService;
+import com.apap.tugasakhir.service.LabSuppliesService;
 import com.apap.tugasakhir.service.PasienService;
 import com.apap.tugasakhir.model.JadwalJagaModel;
 import com.apap.tugasakhir.model.JenisModel;
@@ -41,6 +42,9 @@ public class LabController {
 	
 	@Autowired
 	private JenisPemeriksaanService jenisService;
+	
+	@Autowired
+	private LabSuppliesService labSupplies;
 	
 	@RequestMapping(value = "/lab/pemeriksaan/permintaan", method = RequestMethod.GET)
 	private String view(Model model) {
@@ -80,10 +84,10 @@ public class LabController {
 	}
 
 
-	@RequestMapping(value="/lab/pemeriksaan/permintaan/{id}", method=RequestMethod.GET)
-	private String updateStatus(@RequestParam(value = "id") int id, Model model) {
+	@RequestMapping(value = "/lab/pemeriksaan/permintaan/{id}", method = { RequestMethod.POST })
+	 private String updateStatus(@PathVariable(value = "id") int id,
+	   @RequestParam(value = "hasil", required = false) String hasil) {
 		PemeriksaanModel archive = labService.getPemeriksaanById(id).get();
-		String hasil = archive.getHasil();
 		JenisModel jenis = archive.getJenis();
 		LabSuppliesModel supplies = jenis.getIdSupplies();
 		long milis = System.currentTimeMillis();
@@ -98,8 +102,15 @@ public class LabController {
 			jumlah -= 1;
 			supplies.setJumlah(jumlah);
 			archive.setStatus(status);
+			labSupplies.addSupplies(supplies);
+			labService.addPermintaan(archive);
 		}
-		model.addAttribute("pemeriksaan", archive);
+		
+		else if (status == 2) {
+			archive.setStatus(status);
+			archive.setHasil(hasil);
+			labService.addPermintaan(archive);
+		}
 		return "permintaanPemeriksaanLab";
 	}
 	

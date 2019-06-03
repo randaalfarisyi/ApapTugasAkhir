@@ -1,6 +1,8 @@
+
 package com.apap.tugasakhir.model;
 
 import java.io.Serializable;
+
 import java.sql.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -19,7 +21,6 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
-import com.apap.tugasakhir.rest.Staf;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
