@@ -31,16 +31,11 @@
                             Jam Selesai: <br>
                             <input type="text" name="waktuSelesai" th:value="${jadwal.waktuSelesai}" class="form-control"/>
                             <br>
-<<<<<<< HEAD
                             Nama Staf : <br>
                             <select name= staffModel.id class="form-control"/>
                             	<option selected disabled th:text= "${jadwal.staffModel.name}"></option>
                             	<option th:each = "staff : ${staffList}" th:value="${staff.id}" th:text="${staff.name}"></option>
                             </select>
-=======
-                            ID  Staf: <br>
-                            <input type="text" name="staffModel.id" th:value="${jadwal.staffModel.id}" class="form-control"/>
->>>>>>> 82680e8599346c86baf9f305093aa3ea1dd59c03
                             <br><br>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
